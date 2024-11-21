@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Previsão de Abstenção</title>
+    <script>
+        async function enviarPrevisao() {
+            const dados = [
+                parseFloat(document.getElementById("NR_TURNO").value),
+                parseFloat(document.getElementById("CD_GENERO").value),
+                parseFloat(document.getElementById("CD_ESTADO_CIVIL").value),
+                parseFloat(document.getElementById("CD_FAIXA_ETARIA").value),
+                parseFloat(document.getElementById("CD_GRAU_ESCOLARIDADE").value),
+                parseFloat(document.getElementById("IHH_M_NUM").value),
+            ];
+
+            // Verificar se todos os dados foram preenchidos
+            if (dados.includes(NaN)) {
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+
+            const response = await fetch("{% url 'previsao' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}",
+                },
+                body: JSON.stringify({ features: dados }),  // Enviar os dados como JSON
+            });
+
+            const resultado = await response.json();
+            document.getElementById("resultado").innerText = "Previsão: " + resultado.previsao;
+        }
+
+    </script>
+</head>
+<body>
+    <h1>Previsão de Abstenção</h1>
+    <form onsubmit="event.preventDefault(); enviarPrevisao();">
+        <select name="NR_TURNO" id="NR_TURNO">
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+        <br>
+
+        <select name="CD_GENERO" id="CD_GENERO">
+            <option value="4">Feminino</option>
+            <option value="2">Masculino</option>
+        </select>
+
+        <select name="CD_ESTADO_CIVIL" id="CD_ESTADO_CIVIL">
+            <option value="1">Solteiro</option>
+            <option value="3">Casado</option>
+            <option value="7">Separado Judicialmente</option>
+            <option value="0">Não Informado</option>
+            <option value="9">Divorciado</option>
+            <option value="5">Viúvo</option>
+        </select>
+
+        <select name="CD_FAIXA_ETARIA" id="CD_FAIXA_ETARIA">
+            <option value="-3">Inválido</option>
+            <option value="1600">16 anos</option>
+            <option value="1700">17 anos</option>
+            <option value="1800">18 anos</option>
+            <option value="1900">19 anos</option>
+            <option value="2000">20 anos</option>
+            <option value="2124">21 a 24 anos</option>
+            <option value="2529">25 a 29 anos</option>
+            <option value="3034">30 a 34 anos</option>
+            <option value="3539">35 a 39 anos</option>
+            <option value="4044">40 a 44 anos</option>
+            <option value="4549">45 a 49 anos</option>
+            <option value="5054">50 a 54 anos</option>
+            <option value="5559">55 a 59 anos</option>
+            <option value="6064">60 a 64 anos</option>
+            <option value="6569">65 a 69 anos</option>
+            <option value="7074">70 a 74 anos</option>
+            <option value="7579">75 a 79 anos</option>
+            <option value="8084">80 a 84 anos</option>
+            <option value="8589">85 a 89 anos</option>
+            <option value="9094">90 a 94 anos</option>
+            <option value="9599">95 a 99 anos</option>
+            <option value="9999">100 anos ou mais</option>
+        </select>
+
+        <select name="CD_GRAU_ESCOLARIDADE" id="CD_GRAU_ESCOLARIDADE">
+            <option value="0">NÃO INFORMADO</option>
+            <option value="1">ANALFABETO</option>
+            <option value="2">LÊ E ESCREVE</option>
+            <option value="3">ENSINO FUNDAMENTAL INCOMPLETO</option>
+            <option value="4">ENSINO FUNDAMENTAL COMPLETO</option>
+            <option value="5">ENSINO MÉDIO INCOMPLETO</option>
+            <option value="6">ENSINO MÉDIO COMPLETO</option>
+            <option value="7">SUPERIOR INCOMPLETO</option>
+            <option value="8">SUPERIOR COMPLETO</option>
+        </select>
+
+        <select name="IHH_M_NUM" id="IHH_M_NUM">
+            <option value="0">Baixo</option>
+            <option value="1">Médio</option>
+            <option value="2">Alto</option>
+            <option value="3">Muito Alto</option>
+        </select>
+
+        <br>
+        
+        <!-- Adicione mais inputs -->
+        <button type="submit">Prever</button>
+    </form>
+    <p id="resultado"></p>
+</body>
+</html>
