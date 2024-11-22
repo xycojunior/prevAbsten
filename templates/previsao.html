@@ -11,6 +11,7 @@
                 parseFloat(document.getElementById("CD_FAIXA_ETARIA").value),
                 parseFloat(document.getElementById("CD_GRAU_ESCOLARIDADE").value),
                 parseFloat(document.getElementById("IHH_M_NUM").value),
+                parseFloat(document.getElementById("CD_SG_UF").value)
             ];
 
             // Verificar se todos os dados foram preenchidos
@@ -33,22 +34,107 @@
         }
 
     </script>
+
+<style>
+    /* Estilo geral da página */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f8ff; /* Azul suave */
+        color: #333;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    h1 {
+        color: #1e90ff; /* Azul mais forte */
+        margin-bottom: 20px;
+    }
+
+    form {
+        background-color: #ffffff;
+        border: 1px solid #dcdcdc;
+        border-radius: 8px;
+        padding: 40px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 400px;
+    }
+
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #f8f9fa;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #1e90ff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #4682b4;
+    }
+
+    p#resultado {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #1e90ff;
+        text-align: center;
+    }
+
+    /* Ajuste para responsividade */
+    @media (max-width: 480px) {
+        select {
+            font-size: 14px;
+        }
+
+        button {
+            font-size: 14px;
+        }
+    }
+</style>
+
+
 </head>
 <body>
     <h1>Previsão de Abstenção</h1>
     <form onsubmit="event.preventDefault(); enviarPrevisao();">
-        <select name="NR_TURNO" id="NR_TURNO">
-            <option value="1">1</option>
-            <option value="2">2</option>
+        <!-- Campo Turno -->
+        <select name="NR_TURNO" id="NR_TURNO" required>
+            <option value="" disabled selected>Selecione o turno</option>
+            <option value="1">1° TURNO</option>
+            <option value="2">2° TURNO</option>
         </select>
         <br>
 
-        <select name="CD_GENERO" id="CD_GENERO">
+        <!-- Campo Gênero -->
+        <select name="CD_GENERO" id="CD_GENERO" required>
+            <option value="" disabled selected>Selecione o gênero</option>
             <option value="4">Feminino</option>
             <option value="2">Masculino</option>
         </select>
+        <br>
 
-        <select name="CD_ESTADO_CIVIL" id="CD_ESTADO_CIVIL">
+        <!-- Campo Estado Civil -->
+        
+        <select name="CD_ESTADO_CIVIL" id="CD_ESTADO_CIVIL" required>
+            <option value="" disabled selected>Selecione o estado civil</option>
             <option value="1">Solteiro</option>
             <option value="3">Casado</option>
             <option value="7">Separado Judicialmente</option>
@@ -56,8 +142,12 @@
             <option value="9">Divorciado</option>
             <option value="5">Viúvo</option>
         </select>
+        <br>
 
-        <select name="CD_FAIXA_ETARIA" id="CD_FAIXA_ETARIA">
+        <!-- Campo Faixa Etária -->
+        
+        <select name="CD_FAIXA_ETARIA" id="CD_FAIXA_ETARIA" required>
+            <option value="" disabled selected>Selecione a faixa etária</option>
             <option value="-3">Inválido</option>
             <option value="1600">16 anos</option>
             <option value="1700">17 anos</option>
@@ -82,8 +172,14 @@
             <option value="9599">95 a 99 anos</option>
             <option value="9999">100 anos ou mais</option>
         </select>
+        <br>
 
-        <select name="CD_GRAU_ESCOLARIDADE" id="CD_GRAU_ESCOLARIDADE">
+        <!-- Campo Grau de Escolaridade -->
+        
+        <select name="CD_GRAU_ESCOLARIDADE" id="CD_GRAU_ESCOLARIDADE" required>
+            <option value="" disabled selected>Selecione o grau de escolaridade</option>
+            <option value="0">NÃO INFORMADO</option>
+            <option value="1">ANALFABETO</option>
             <option value="0">NÃO INFORMADO</option>
             <option value="1">ANALFABETO</option>
             <option value="2">LÊ E ESCREVE</option>
@@ -94,19 +190,56 @@
             <option value="7">SUPERIOR INCOMPLETO</option>
             <option value="8">SUPERIOR COMPLETO</option>
         </select>
+        <br>
 
-        <select name="IHH_M_NUM" id="IHH_M_NUM">
+        <!-- Campo Índice de Humanidade -->
+        
+        <select name="IHH_M_NUM" id="IHH_M_NUM" required>
+            <option value="" disabled selected>Selecione o índice - IDH</option>
             <option value="0">Baixo</option>
             <option value="1">Médio</option>
             <option value="2">Alto</option>
             <option value="3">Muito Alto</option>
         </select>
-
         <br>
+
+        <!-- Campo Estado (UF) -->
         
-        <!-- Adicione mais inputs -->
+        <select name="CD_SG_UF" id="CD_SG_UF" required>
+            <option value="" disabled selected>Selecione o Estado</option>
+            <option value="0">Acre</option>
+            <option value="1">Alagoas</option>
+            <option value="2">Amapá</option>
+            <option value="3">Amazonas</option>
+            <option value="4">Bahia</option>
+            <option value="5">Ceará</option>
+            <option value="6">Distrito Federal</option>
+            <option value="7">Espírito Santo</option>
+            <option value="8">Goiás</option>
+            <option value="9">Maranhão</option>
+            <option value="10">Mato Grosso</option>
+            <option value="11">Mato Grosso do Sul</option>
+            <option value="12">Minas Gerais</option>
+            <option value="13">Pará</option>
+            <option value="14">Paraíba</option>
+            <option value="15">Paraná</option>
+            <option value="16">Pernambuco</option>
+            <option value="17">Piauí</option>
+            <option value="18">Rio de Janeiro</option>
+            <option value="19">Rio Grande do Norte</option>
+            <option value="20">Rio Grande do Sul</option>
+            <option value="21">Rondônia</option>
+            <option value="22">Roraima</option>
+            <option value="23">Santa Catarina</option>
+            <option value="24">São Paulo</option>
+            <option value="25">Sergipe</option>
+            <option value="26">Tocantins</option>
+        </select>
+        <br>
+
         <button type="submit">Prever</button>
     </form>
     <p id="resultado"></p>
 </body>
+
 </html>
