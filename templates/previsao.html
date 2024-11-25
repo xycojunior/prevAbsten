@@ -41,36 +41,36 @@
         font-family: Arial, sans-serif;
         background-color: #f0f8ff; /* Azul suave */
         color: #333;
-        margin: 0;
+        margin-left: 50px;
         padding: 0;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
+        align-items: center ;
+        justify-content: center ;
+        min-height: 90vh;
     }
 
     h1 {
-        color: #1e90ff; /* Azul mais forte */
-        margin-bottom: 20px;
+        color: #003366; /* Azul mais forte */
+        margin-bottom: 10px;
     }
 
     form {
         background-color: #ffffff;
-        border: 1px solid #dcdcdc;
-        border-radius: 8px;
-        padding: 40px;
+        border: 1px solid rgba(0, 0, 0, 0.144);
+        border-radius: 15px;
+        padding: 30px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         width: 90%;
-        max-width: 400px;
+        max-width: 800px;
     }
 
     select {
         width: 100%;
-        padding: 10px;
+        padding: 8px;
         margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
+        border: 0.1px solid rgba(0, 0, 0, 0.123);
+        border-radius: 10px;
         font-size: 16px;
         background-color: #f8f9fa;
     }
@@ -80,21 +80,24 @@
         padding: 10px;
         font-size: 16px;
         color: #fff;
-        background-color: #1e90ff;
+        background-color: #003366;
         border: none;
-        border-radius: 4px;
+        border-radius: 150px;
         cursor: pointer;
         transition: background-color 0.3s;
     }
 
     button:hover {
-        background-color: #4682b4;
+        background-color: #3e8fe0;
     }
 
     p#resultado {
-        margin-top: 20px;
-        font-size: 18px;
-        color: #1e90ff;
+        border-radius: 15px;
+        background-color: #0033661e;
+        padding: 100px;
+        margin-top: 22px;
+        font-size: 21px;
+        color: #1E1E1E;
         text-align: center;
     }
 
@@ -115,6 +118,7 @@
 <body>
     <h1>Previsão de Abstenção</h1>
     <form onsubmit="event.preventDefault(); enviarPrevisao();">
+        <p>Descubra sua probabilidade de faltar a uma eleição:</p>
         <!-- Campo Turno -->
         <select name="NR_TURNO" id="NR_TURNO" required>
             <option value="" disabled selected>Selecione o turno</option>
@@ -135,10 +139,10 @@
         
         <select name="CD_ESTADO_CIVIL" id="CD_ESTADO_CIVIL" required>
             <option value="" disabled selected>Selecione o estado civil</option>
+            <option value="0">Não Informado</option>
             <option value="1">Solteiro</option>
             <option value="3">Casado</option>
             <option value="7">Separado Judicialmente</option>
-            <option value="0">Não Informado</option>
             <option value="9">Divorciado</option>
             <option value="5">Viúvo</option>
         </select>
@@ -180,8 +184,6 @@
             <option value="" disabled selected>Selecione o grau de escolaridade</option>
             <option value="0">NÃO INFORMADO</option>
             <option value="1">ANALFABETO</option>
-            <option value="0">NÃO INFORMADO</option>
-            <option value="1">ANALFABETO</option>
             <option value="2">LÊ E ESCREVE</option>
             <option value="3">ENSINO FUNDAMENTAL INCOMPLETO</option>
             <option value="4">ENSINO FUNDAMENTAL COMPLETO</option>
@@ -195,11 +197,11 @@
         <!-- Campo Índice de Humanidade -->
         
         <select name="IHH_M_NUM" id="IHH_M_NUM" required>
-            <option value="" disabled selected>Selecione o índice - IDH</option>
-            <option value="0">Baixo</option>
-            <option value="1">Médio</option>
-            <option value="2">Alto</option>
-            <option value="3">Muito Alto</option>
+            <option value="" disabled selected>Selecione o índice da cidade - IDH</option>
+            <option value="0">Baixo - pouco desenvolvido</option>
+            <option value="1">Médio - em desenvolvimento</option>
+            <option value="2">Alto - bem desenvolvido</option>
+            <option value="3">Muito Alto - muito desenvolvido</option>
         </select>
         <br>
 
@@ -238,8 +240,7 @@
         <br>
 
         <button type="submit">Prever</button>
+        <p id="resultado"></p>
     </form>
-    <p id="resultado"></p>
 </body>
-
 </html>
