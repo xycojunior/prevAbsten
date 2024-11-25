@@ -4,7 +4,7 @@ from django.http import JsonResponse
 import json
 
 # Carregar modelo uma vez
-modelo = joblib.load('previsao/models/modelo_completo_gb_joblib.pkl')
+modelo = joblib.load('previsao/models/modelo_binario_gb_joblib.pkl')
 
 def previsao_view(request):
     if request.method == "POST":
