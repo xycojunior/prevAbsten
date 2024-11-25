@@ -19,9 +19,7 @@ def previsao_view(request):
             if resultado == 0:
                 resultado = 'Baixa'
             elif resultado == 1:
-                resultado = 'Média'
-            else:
-                resultado = "Alta"
+                resultado = 'Alta'
             return JsonResponse({'previsao': resultado})
     
     return render(request, 'previsao.html')
