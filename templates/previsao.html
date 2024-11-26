@@ -41,59 +41,70 @@
         font-family: Arial, sans-serif;
         background-color: #f0f8ff; /* Azul suave */
         color: #333;
-        margin-left: 50px;
         padding: 0;
         display: flex;
-        flex-direction: column;
         align-items: center ;
         justify-content: center ;
-        min-height: 90vh;
+        height: 100%;
+        margin: 0;
+        box-sizing: border-box;
     }
-
+    .image{
+        border-radius: 15px;
+        padding: 100px;
+        background-image: url('image.png');
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat; 
+    }
     h1 {
-        color: #003366; /* Azul mais forte */
-        margin-bottom: 10px;
+        color: #003366;
+        justify-content: center;
+        display: flex;
+        font-weight: 800;
     }
 
     form {
         background-color: #ffffff;
         border: 1px solid rgba(0, 0, 0, 0.144);
-        border-radius: 15px;
+        border-radius: 1px;
         padding: 30px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         width: 90%;
-        max-width: 800px;
+        max-width: 650px;
+        
     }
 
     select {
         width: 100%;
         padding: 8px;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         border: 0.1px solid rgba(0, 0, 0, 0.123);
         border-radius: 10px;
-        font-size: 16px;
+        font-size: 14px;
         background-color: #f8f9fa;
     }
 
     button {
         width: 100%;
         padding: 10px;
-        font-size: 16px;
+        font-size: 15px;
+        font-weight: bold;
         color: #fff;
         background-color: #003366;
         border: none;
         border-radius: 150px;
         cursor: pointer;
-        transition: background-color 0.3s;
+        transition: background-color 0.6s;
     }
 
     button:hover {
-        background-color: #3e8fe0;
+        background-color: #789dbe;
     }
 
     p#resultado {
         border-radius: 15px;
-        background-color: #0033661e;
+        background-color: #8ac4ff27;
         padding: 100px;
         margin-top: 22px;
         font-size: 21px;
@@ -116,8 +127,12 @@
 
 </head>
 <body>
-    <h1>Previsão de Abstenção</h1>
+    
     <form onsubmit="event.preventDefault(); enviarPrevisao();">
+        <h1>Previsão de Abstenção</h1>
+        <div class="image">
+
+        </div>
         <p>Descubra sua probabilidade de faltar a uma eleição:</p>
         <!-- Campo Turno -->
         <select name="NR_TURNO" id="NR_TURNO" required>
@@ -239,8 +254,11 @@
         </select>
         <br>
 
-        <button type="submit">Prever</button>
+        <button type="submit">Prever Abstenção</button>
         <p id="resultado"></p>
+        <footer>
+           <p>@2024 - Projeto em desenvolvimento e teste para disciplina de PI - Data Science.</p>
+        </footer>
     </form>
 </body>
 </html>
